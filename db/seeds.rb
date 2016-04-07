@@ -14,7 +14,7 @@ User.create!(name:  "Administrator",
                password_confirmation: password)
 end
 
-  users = User.order(:created_at).take(6)
+  users = User.order(:created_at).take(50)
   50.times do
   title = Faker::Lorem.word
   body = Faker::Lorem.sentence(6)
@@ -25,6 +25,13 @@ end
 users = User.all
 user  = users.first
 following = users[2..50]
-followers = users[3..40]
+followers = users[1..10]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+entries = Entry.order(:created_at).take(10)
+comment_user = users[2..50]
+3.times do
+  content = Faker::Lorem.sentence(5)
+  entries.each { |entry| entry.comments.create!(content: content,user_id: 1) }
+end

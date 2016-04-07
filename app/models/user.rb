@@ -17,13 +17,23 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   validates :password, presence: true, length: { minimum: 4 }, allow_nil: true
-
+  has_many :comments, dependent: :destroy
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
     Entry.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
   end
 
+  def allowed_user
+    sqlstring = "SELECT follower_id FROM relationships WHERE  followed_id = :user_id"
+    User.where("id IN (#{sqlstring}) OR id = :user_id", user_id: id)
+  end
+
+  def allowed_user2
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    User.where("id IN (#{following_ids})")
+  end
 
    # Follows a user.
   def follow(other_user)
