@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @entries = @user.entries.paginate(page: params[:page])
+
+
   end
 
   def create
@@ -79,6 +81,8 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+
+
 
 
 end

@@ -19,6 +19,9 @@ class EntriesController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+
+
+
   private
 
   def entry_params
@@ -29,5 +32,9 @@ class EntriesController < ApplicationController
       @entry = current_user.entries.find_by(id: params[:id])
       redirect_to root_url if @entry.nil?
   end
+
+
+
+
 
 end

@@ -48,6 +48,16 @@ module SessionsHelper
     user == current_user
   end
 
+  def allowed?(user)
+    current_user.allowed_user.include?(user)
+  end
+
+  def allowed2?(user)
+    user.allowed_user2.include?(current_user)
+  end
+
+
+
   def logged_in?
     !current_user.nil?
   end

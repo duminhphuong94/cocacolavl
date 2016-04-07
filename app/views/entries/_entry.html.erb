@@ -1,6 +1,7 @@
 
 <li id="Entry-<%= entry.id %>">
   <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
+
   <span class="title"><%= entry.title %></span>
 
   <span class="user"><%= link_to entry.user.name, entry.user if !current_user?(entry.user)
@@ -16,5 +17,26 @@
           data: { confirm: "You sure?" } %>
     <% end %>
   </span>
+  <% if (entry.user.following?(current_user) or current_user?(entry.user))%>
+  <div>
+    <%= form_for Comment.new do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+  <%= f.hidden_field :entry_id,:Value => entry.id%>
+    <%= f.text_field :content, placeholder: "Compose new comment..." %>
+  </div>
+  <%= f.submit "Post comment", class: "btn btn-primary" %>
+<% end %>
+  </div>
+  <div >
+        <% if entry.comments.any? %>
+      Comment (<%= entry.comments.count %>)
+      <ol class="entries">
+        <%= render entry.comments %>
+
+      </ol>
+    <% end %>
+    </div>
+    <% end %>
 </li>
 
