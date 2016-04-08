@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
       flash.now[:success] = "commented!"
       redirect_to(:back)
     else
-      render text: 'dau xanh rau ma'
+      flash[:danger] = "Comment can't be blank!"
+      redirect_to(:back)
     # wait for
 
     end
