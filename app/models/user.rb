@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :follower
   validates :password, presence: true, length: { minimum: 4 }, allow_nil: true
   has_many :comments, dependent: :destroy
+  has_many :likes,dependent: :destroy
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
@@ -49,8 +50,7 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
-
-
+  
 
 
   def User.digest(string)
