@@ -12,14 +12,20 @@ class EntriesController < ApplicationController
       render 'pages/home'
     end
   end
-
+  
+  
   def destroy
     @entry.destroy
     flash[:success] = "Entry deleted"
     redirect_to request.referrer || root_url
   end
 
-
+  def like
+    @title = "Liked by user"
+    @entry  = Entry.find(params[:id])
+    @users = @entry.liked_users.paginate(page: params[:page])
+    render 'show_user'
+  end
 
 
   private

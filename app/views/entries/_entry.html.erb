@@ -17,6 +17,32 @@
           data: { confirm: "You sure?" } %>
     <% end %>
   </span>
+  <div class="stats">
+  <a href="<%= if (entry.likes.count!=0) then like_entry_path(entry) end %>">
+    <strong id="like" class="stat">
+      <%= entry.likes.count %> like
+    </strong>
+    
+  </a>
+  
+</div>
+<% if current_user?(@user) %>
+  <div id="follow_form">
+  <% if current_user.liked?(entry) %>
+    <%= form_for(current_user.likes.find_by(entry_id: entry.id),
+             html: { method: :delete }) do |f| %>
+             <div><%= hidden_field_tag :entry_id, entry.id %></div>
+  <%= f.submit "Unlike", class: "btn" %>
+    
+<% end %>
+  <% else %>
+    <%= form_for(current_user.likes.build) do |f| %>
+  <div><%= hidden_field_tag :entry_id, entry.id %></div>
+  <%= f.submit "Like", class: "btn btn-primary" %>
+<% end %>
+  <% end %>
+  </div>
+<% end %>
   <% if (entry.user.following?(current_user) or current_user?(entry.user))%>
   <div>
     <%= form_for Comment.new do |f| %>

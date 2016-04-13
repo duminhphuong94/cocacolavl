@@ -18,7 +18,7 @@ end
   50.times do
   title = Faker::Lorem.word
   body = Faker::Lorem.sentence(6)
-  users.each { |user| user.entries.create!(title: title,body: body) }
+  users.each { |user| user.entries.create!(title: title,body: body,picture: "ch_m_c.jpg") }
   end
 
   # Following relationships
@@ -30,8 +30,11 @@ following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
 entries = Entry.order(:created_at).take(10)
-comment_user = users[2..50]
+#comment_user = users[2..50]
 3.times do
   content = Faker::Lorem.sentence(5)
   entries.each { |entry| entry.comments.create!(content: content,user_id: 1) }
 end
+
+entriesa = Entry.order(:created_at).take(40)
+entriesa.each { |entry| user.like(entry)}
