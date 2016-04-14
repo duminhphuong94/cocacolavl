@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :follower
   validates :password, presence: true, length: { minimum: 4 }, allow_nil: true
   has_many :comments, dependent: :destroy
+  #likes
+  has_many :likes,dependent: :destroy
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
@@ -49,7 +51,31 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
-
+  
+  #like entry
+  def like(entry)
+    likes.create(entry_id: entry.id)
+  end
+  
+  #unlike entry
+  def unlike(entry)
+    likes.find_by(entry_id: entry.id).destroy
+  end
+  #liked entries
+  def liked_entries
+    liked_entries_ids = "SELECT entry_id FROM likes
+                     WHERE  user_id = :user_id"
+    Entry.where("id IN (#{liked_entries_ids})", user_id: id)
+  end
+  #like entry?
+  def liked?(entry)
+    liked_entries.include?(entry)
+  end
+  #toggle like/unlike
+  def like_toggle(entry)
+    user.liked?(entry)? user.unlike(entry): user.like(entry)
+  end
+    
 
 
 
