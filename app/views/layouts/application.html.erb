@@ -8,19 +8,20 @@
   <%=render 'layouts/shim'%>
 
     </head>
-    <body>
-    <%=render 'layouts/header'%>
+    
+    <body >
+   
+    <%=render 'layouts/header'if request.original_url != root_url%> 
 
-   <div class="container">
+   <div>
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
 
      <%= yield %>
 
-     <%= render 'layouts/footer'%>
-     <%= debug(params) if Rails.env.
-     development? %>
+    
+  
 
    </div>
  </body>

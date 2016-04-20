@@ -1,10 +1,14 @@
 <% provide(:title, 'All users') %>
+<body style="background-image: url(http://goo.gl/Ds5wnS);background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">
 <h1>All users</h1>
+<div class="col-md-3 col-md-offset-5">
 
 <%= will_paginate %>
 
-<ul class="users">
+<ul class="users" style="padding-left:0px;">
    <%= render @users %>
 </ul>
 
 <%= will_paginate %>
+</div>
+</body>

@@ -1,31 +1,51 @@
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
+<body style="background-image: url(http://goo.gl/Ds5wnS);background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">
+<%=render 'layouts/header'%>
+  <div class="row" style="">
+    <aside class="col-md-8 col-md-offset-2" style="border-style: inset;background-color: #FFFFFF">
+      <div class="col-md-6">
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
-            <section class="stats">
+     
+      <section class="stats" >
         <%= render 'shared/stats' %>
       </section>
+      </div>
+      <div class="col-md-6">
       <section class="entry_form">
         <%= render 'shared/entry_form' %>
       </section>
+      </div>
+      </div>
     </aside>
-    <div class="col-md-8">
-      <h3>Entry feed</h3>
-      <%= render 'shared/feed' %>
-
     </div>
-  </div>
+    <div class="row" style="padding-top:5px" >
+    <div class="col-md-8 col-md-offset-2" style="border-style: inset;background-color: #FFFFFF">
+      <%= render 'shared/feed' %>
+    </div>
+    </div>
+</body>
 <% else %>
-<div class="center jumbotron">
-  <h1>Welcome to CocacolaVL</h1>
 
-  <h2>
-    You can view everyone 's entry at:<%= link_to "Feed", users_path, class: "btn btn-lg btn-secondary" %>
-  </h2>
+<body style="background-image: url(http://s31.postimg.org/n9k8rmuor/6891377_baby_animal_background.jpg);
+  background-size: 100%;">
+<header class="navbar navbar-fixed-top navbar-inverse ">
+  <div class="container">
+    <%= link_to "Cocacola ", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+      
+        <li><%= link_to "Users", users_path %></li>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+          <li><%= link_to "Log in", login_path %></li>
+           <li><%= link_to "Sign up", signup_path %></li>
+     
+      </ul>
+    </nav>
+  </div>
+</header>  
+
+</body>
 <% end %>
 
