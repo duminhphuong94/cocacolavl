@@ -1,13 +1,14 @@
 
-<li id="Entry-<%= entry.id %>">
-  <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
+<li id="Entry-<%= entry.id %>" >
+  <div class="container-fluid" style=" padding-bottom:30px">
+  <%= link_to gravatar_for(entry.user, size: 50), entry.user %><!--anh dai dien-->
 
   <span class="title"><%= entry.title %></span>
 
   <span class="user"><%= link_to entry.user.name, entry.user if !current_user?(entry.user)
     %></span>
-
-  <span class="body"><%= entry.body %>
+  <span class="body"><%= entry.body %><!--noi dung comment cua anh-->
+  
   <%= image_tag entry.picture.url if entry.picture? %>
   </span>
   <span class="timestamp">
@@ -16,53 +17,63 @@
       <%= link_to "delete", entry, method: :delete,
           data: { confirm: "You sure?" } %>
     <% end %>
+    <!--hiển thị số like,chỗ này nếu m muốn làm di chuột vào cái hình số like sẽ hiện ra danh sách những ng like thì làm đc k,dùng hover ý,ds ng đã like t get cho-->
   </span>
-  <div class="stats">
+<span class="like" > 
   <a href="<%= if (entry.likes.count!=0) then like_entry_path(entry) end %>">
     <strong id="like" class="stat">
-      <%= entry.likes.count %> like
+      <%= entry.likes.count %> 
     </strong>
     
   </a>
-  
-</div>
+  <!--Form like-->
+
 <% if current_user?(@user) %>
   <div id="follow_form">
   <% if current_user.liked?(entry) %>
     <%= form_for(current_user.likes.find_by(entry_id: entry.id),
              html: { method: :delete }) do |f| %>
              <div><%= hidden_field_tag :entry_id, entry.id %></div>
+ 
   <%= f.submit "Unlike", class: "btn" %>
-    
-<% end %>
+ 
+  <% end %>
   <% else %>
     <%= form_for(current_user.likes.build) do |f| %>
   <div><%= hidden_field_tag :entry_id, entry.id %></div>
+ 
   <%= f.submit "Like", class: "btn btn-primary" %>
+  
 <% end %>
   <% end %>
   </div>
 <% end %>
+</span>
+<!--comment form-->
   <% if (entry.user.following?(current_user) or current_user?(entry.user))%>
-  <div>
+  <div >
     <%= form_for Comment.new do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
+  <div class="field" style="width:400px;padding-left:60px">
   <%= f.hidden_field :entry_id,:Value => entry.id%>
     <%= f.text_field :content, placeholder: "Compose new comment..." %>
   </div>
+  <div style="width:170px;padding-left:60px">
   <%= f.submit "Post comment", class: "btn btn-primary" %>
+  </div>
 <% end %>
   </div>
-  <div >
+  <div style="padding-left:60px;padding-top:20px">
         <% if entry.comments.any? %>
       Comment (<%= entry.comments.count %>)
       <ol class="entries">
+        <!--đoạn hiển thị comment trong file comment/_comment.html-->
         <%= render entry.comments %>
 
       </ol>
     <% end %>
     </div>
     <% end %>
+</div>
 </li>
 

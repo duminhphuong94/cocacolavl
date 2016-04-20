@@ -1,6 +1,7 @@
 <% provide(:title, @user.name) %>
+<body style="background-image: url(http://goo.gl/Ds5wnS);background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-8 col-md-offset-2" style="border-style: inset;background-color: #FFFFFF">
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
@@ -10,9 +11,14 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+     <section style="padding-top:20px;padding-left:0px;">
+      <%= render 'follow_form' if logged_in? %>
+      </section>
   </aside>
-  <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
+  </div>
+  <div class="row">
+  <div class="col-md-8 col-md-offset-2" style="border-style: inset;background-color: #FFFFFF;margin-top:5px">
+  
     <% if @user.entries.any? %>
       <h3>Entries (<%= @user.entries.count %>)</h3>
       <ol class="entries">
@@ -22,3 +28,4 @@
     <% end %>
   </div>
 </div>
+</body>
