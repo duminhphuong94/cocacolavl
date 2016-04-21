@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :title, placeholder: "Add title..." %>
-    <%= f.text_area :body, placeholder: "Compose new entry..." %>
+    <%= f.text_field :body, placeholder: "Compose new entry..." %>
   </div>
   <div class="col-md-4" style=" padding: 0px;margin-bottom: 5px;">
   <%= f.submit "Post", class: "btn btn-primary" %>
