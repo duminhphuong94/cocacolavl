@@ -1,0 +1,17 @@
+/home/ubuntu/.rvm/rubies/ruby-2.0.0-p648/bin/ruby -r ./siteconf20160428-31653-15jorbe.rb extconf.rb
+checking for ruby/util.h... yes
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling crypt_gensalt.c
+compiling crypt.c
+compiling wrapper.c
+compiling crypt_blowfish.c
+compiling bcrypt_ext.c
+linking shared-object bcrypt_ext.so
+
+make "DESTDIR=" install
+/usr/bin/install -m 0755 bcrypt_ext.so ./.gem.20160428-31653-1hv6lr9
+installing default bcrypt_ext libraries
