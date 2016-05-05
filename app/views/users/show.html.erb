@@ -1,7 +1,8 @@
 <% provide(:title, @user.name) %>
-<body style="background-image: url(http://goo.gl/Ds5wnS);background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">
-<div class="row">
-  <aside class="col-md-8 col-md-offset-2" style="border-style: inset;background-color: #FFFFFF">
+<body style="background-image: url(http://elephantnosepetcenter.com/var/m_0/04/04d/22705/217256-background.jpg);background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">
+  <div class="user_show" style="padding-top: 40px">
+    <div class="row">
+  <aside class="col-md-8 col-md-offset-2">
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
@@ -17,7 +18,7 @@
   </aside>
   </div>
   <div class="row">
-  <div class="col-md-8 col-md-offset-2" style="border-style: inset;background-color: #FFFFFF;margin-top:5px">
+  <div class="col-md-8 col-md-offset-2">
   
     <% if @user.entries.any? %>
       <h3>Entries (<%= @user.entries.count %>)</h3>
@@ -28,4 +29,6 @@
     <% end %>
   </div>
 </div>
+  </div>
+
 </body>

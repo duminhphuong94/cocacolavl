@@ -1,6 +1,7 @@
 
 <li id="Entry-<%= entry.id %>" >
   <div class="container-fluid" style=" padding-bottom:30px">
+  <div class="col-md-11">
   <%= link_to gravatar_for(entry.user, size: 50), entry.user %><!--anh dai dien-->
 
   <span class="title"><%= entry.title %></span>
@@ -13,39 +14,42 @@
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(entry.created_at) %> ago.
-    <% if current_user?(entry.user) %>
-      <%= link_to "delete", entry, method: :delete,
-          data: { confirm: "You sure?" } %>
-    <% end %>
+    
     <!--hiển thị số like,chỗ này nếu m muốn làm di chuột vào cái hình số like sẽ hiện ra danh sách những ng like thì làm đc k,dùng hover ý,ds ng đã like t get cho-->
   </span>
 <span class="like" > 
   <a href="<%= if (entry.likes.count!=0) then like_entry_path(entry) end %>">
     <strong id="like" class="stat">
-      <%= entry.likes.count %> 
+      <%if (entry.likes.count!=0) %>
+      <%= entry.likes.count %> likes
     </strong>
-    
+     <% end %>
   </a>
   <!--Form like-->
 
-<% if current_user?(@user) %>
+<%# if current_user?(@user) %>
   <div id="follow_form">
   <% if current_user.liked?(entry) %>
     <%= form_for(current_user.likes.find_by(entry_id: entry.id),
              html: { method: :delete }) do |f| %>
              <div><%= hidden_field_tag :entry_id, entry.id %></div>
- 
-  <%= f.submit "Unlike", class: "btn" %>
+ <%= button_tag(type: 'submit', class: "btn btn-default") do %>
+ <i class="glyphicon glyphicon-thumbs-down"></i> Unlike
+<% end %>
+  <!--<%= f.submit "Unlike", class: "btn " %>-->
  
   <% end %>
   <% else %>
     <%= form_for(current_user.likes.build) do |f| %>
   <div><%= hidden_field_tag :entry_id, entry.id %></div>
  
-  <%= f.submit "Like", class: "btn btn-primary" %>
+ <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+ <i class="glyphicon glyphicon-thumbs-up"></i> Like
+<% end %>
+  <!--<%= f.submit "Like", class: "btn btn-primary" %>-->
   
 <% end %>
-  <% end %>
+  <%# end %>
   </div>
 <% end %>
 </span>
@@ -74,6 +78,13 @@
     <% end %>
     </div>
     <% end %>
+</div>
+<div class="col-md-1">
+  <% if current_user?(entry.user) %>
+      <%= link_to "delete", entry, method: :delete,
+          data: { confirm: "You sure?" } %>
+    <% end %>
+</div>
 </div>
 </li>
 

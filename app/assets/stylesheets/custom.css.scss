@@ -3,7 +3,7 @@
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 15px;
 }
 
 section {
@@ -22,6 +22,13 @@ textarea {
   margin-bottom: 10px;
 }
 
+.login {
+  padding-top: 40px;
+}
+
+.home {
+  padding-top: 45px;
+}
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -44,6 +51,15 @@ h2 {
   color: #777;
 }
 
+.item {
+  margin-top: 150px;
+  position: relative;
+}
+
+.item h1 {
+  color: white;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -64,6 +80,21 @@ p {
   text-decoration: none;
 }
 
+#logo2 {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+ 
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#logo2:hover {
+  color: #fff;
+  text-decoration: none;
+}
 /* footer */
 
 footer {
@@ -122,8 +153,8 @@ aside {
     margin-top: 20px;
   }
   section {
-    padding: 10px 0;
-    margin-top: 20px;
+    padding: 0 0;
+    margin-top: 0;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -153,7 +184,7 @@ aside {
 }
 .stats {
   overflow: auto;
-  margin-top: 0;
+  margin-top: 10px;
   padding: 0;
   a {
     float: left;
