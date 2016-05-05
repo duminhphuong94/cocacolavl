@@ -1,26 +1,44 @@
 
 <% provide(:title, "Log in") %>
-<body style="background-image: url(http://goo.gl/Ds5wnS);background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">
-<h1>Log in</h1>
+<body style="background-image: url(http://www.dualimg.com/wp-content/wallpapers/20121227/c1h3eebfwgb424.jpg);
+  background-size: 100%;">
+  <header style="font-size: 18px">
+  <div class="container">
+    <%= link_to "Cocacola" , root_path, id: "logo2" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+      
+      
+          <li><%= link_to "Log in", login_path %></li>
+           <li><%= link_to "Sign up", signup_path %></li>
+     
+      </ul>
+    </nav>
+  </div>
+</header>  
+  <div class="login">
+    <!--<body style="background-color: gray;background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">-->
+  <h1>Log in</h1>
 
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <%= form_for(:session, url: login_path) do |f| %>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= form_for(:session, url: login_path) do |f| %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-      <%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me %>
-        <span>Remember me on this computer</span>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :remember_me, class: "checkbox inline" do %>
+          <%= f.check_box :remember_me %>
+          <span>Remember me</span>
+        <% end %>
+
+        <%= f.submit "Log in", class: "btn btn-primary" %>
       <% end %>
 
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    </div>
   </div>
-</div>
+  </div>
 </body>

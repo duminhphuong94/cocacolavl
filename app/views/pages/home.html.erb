@@ -1,42 +1,50 @@
 <% if logged_in? %>
-<body style="background-image: url(http://goo.gl/Ds5wnS);background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">
+
+<!--sau khi login-->
+
+<body style="background-image: url(http://elephantnosepetcenter.com/var/m_0/04/04d/22705/217256-background.jpg);background-size: 100%;background-attachment: fixed;background-repeat: no-repeat;">
 <%=render 'layouts/header'%>
-  <div class="row" style="">
-    <aside class="col-md-8 col-md-offset-2" style="background-color: #FFFFFF">
-      <div class="col-md-6">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
+  <div class="home">
+    <div class="row">
+      <aside class="col-md-8 col-md-offset-2">
+      <!--<div class="col-md-6">-->
+      <!--<section class="user_info">-->
+      <!--  <%= render 'shared/user_info' %>-->
+      <!--</section>-->
      
-      <section class="stats" >
-        <%= render 'shared/stats' %>
-      </section>
-      </div>
+      <!--<section class="stats" >-->
+      <!--  <%= render 'shared/stats' %>-->
+      <!--</section>-->
+      <!--</div>-->
+    
       <div class="col-md-6">
-      <section class="entry_form">
-        <%= render 'shared/entry_form' %>
-      </section>
-      </div>
+           <%= link_to gravatar_for(current_user, size: 50), current_user %>
+        <section class="entry_form">
+          <%= render 'shared/entry_form' %>
+        </section>
       </div>
     </aside>
     </div>
     <div class="row" style="padding-top:5px" >
-    <div class="col-md-8 col-md-offset-2" style="background-color: #FFFFFF">
+      <div class="col-md-8 col-md-offset-2">
       <%= render 'shared/feed' %>
+      </div>
     </div>
-    </div>
-</body>
+  </div>
+ </body> 
 <% else %>
 
-<body style="background-image: url(http://s31.postimg.org/n9k8rmuor/6891377_baby_animal_background.jpg);
+<!--Home chinh khi chua login-->
+ 
+<body style="background-image: url(http://wallpaperhd.press/wp-content/uploads/2016/02/Cute-Animal-Wallpaper-N5M.jpg);
   background-size: 100%;">
-<header class="navbar navbar-fixed-top navbar-inverse ">
+<header style="font-size: 18px">
   <div class="container">
-    <%= link_to "Cocacola ", root_path, id: "logo" %>
+    <%= link_to "Cocacola" , root_path, id: "logo2" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
       
-        <li><%= link_to "Users", users_path %></li>
+        
 
           <li><%= link_to "Log in", login_path %></li>
            <li><%= link_to "Sign up", signup_path %></li>
@@ -45,7 +53,13 @@
     </nav>
   </div>
 </header>  
-
+ 
+  <!--<center class="item">-->
+  <!--  <h1>Home to everyone's best photos</h1>-->
+  <!--  <h2>Showcase your work, license amazing photos, and stay inspired.</h2>-->
+  <!--  <a class="btn btn-primary btn-lg" href="/signup">Get started >></a>-->
+  <!--</center>-->
 </body>
+
 <% end %>
 

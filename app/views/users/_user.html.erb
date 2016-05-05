@@ -1,12 +1,17 @@
 
 <li>
-  
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>
-<!-- add condition for user that not log in can view -->
+    <div class="col-md-10">
+      <%= gravatar_for user, size: 50 %>
+      <%= link_to user.name, user %>
+    </div>
+    
+    <div class="col-md-2">
+      <!-- add condition for user that not log in can view -->
   <% if current_user && current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
+      <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
+    </div>
   
+
 </li>

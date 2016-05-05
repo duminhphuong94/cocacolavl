@@ -1,16 +1,20 @@
 <%= form_for(@entry, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
+    <%= f.label :Title %>
     <%= f.text_field :title, placeholder: "Add title..." %>
-    <%= f.text_field :body, placeholder: "Compose new entry..." %>
+    <%= f.label :Description %>
+    <%= f.text_field :body, placeholder: "Write description..." %>
   </div>
-  <div class="col-md-4" style=" padding: 0px;margin-bottom: 5px;">
-  <%= f.submit "Post", class: "btn btn-primary" %>
-  </div>
+  
   
   <span class="picture">
     <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
   </span>
+  
+  <div class="col-md-3" style=" padding: 0px;margin-bottom: 5px;">
+  <%= f.submit "Post", class: "btn btn-primary btn-sm" %>
+  </div>
 <% end %>
 
 <script type="text/javascript">
